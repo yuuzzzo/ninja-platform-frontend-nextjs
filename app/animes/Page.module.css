@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+.mainContainer {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #151515 0%, #000 70%);
+  color: #fff;
+  padding-bottom: 80px;
+}
+
+.headerSection {
+  padding: 60px 40px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -1px;
+  padding-left: 25px;
+  margin: 0;
+}
+
+.containerAnimes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 0 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
