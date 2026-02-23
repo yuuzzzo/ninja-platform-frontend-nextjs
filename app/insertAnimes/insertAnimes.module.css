@@ -1,0 +1,96 @@
+.container {
+  background-image: url("/fundo_anime_platform.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.formContainer {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.logoNinja {
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+}
+
+.titleForm {
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 0px;
+  font-size: 1.6rem;
+}
+
+.inputForm {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 12px;
+  transition: transform 0.4s ease-out;
+  opacity: 50%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.buttonForm {
+  border: 1px solid #424242;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  box-shadow: 0 4px 15px rgba(128, 128, 128, 0.5);
+  margin-top: 10px;
+  margin-bottom: -5px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  color: #1c1c1c;
+  background: linear-gradient(45deg, white 25%, #b0b0b0);
+  transition: transform 0.4s ease-out;
+}
+
+.buttonRedirect {
+  border: 1px solid #424242;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  box-shadow: 0 4px 15px rgba(128, 128, 128, 0.5);
+  margin-top: 10px;
+  margin-bottom: -5px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  color: #1c1c1c;
+  width: 50%;
+  background-color: transparent;
+  transition: transform 0.4s ease-out;
+  opacity: 90%;
+}
+
+.inputForm:focus {
+  opacity: 100%;
+  transform: scale(1.05);
+}
+
+.buttonForm:hover {
+  transform: scale(1.05);
+}
+
+.buttonRedirect:hover {
+  transform: scale(1.05);
+}
