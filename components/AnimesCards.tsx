@@ -9,7 +9,10 @@ export default async function AnimesCards() {
     <>
       {listaAnimes.map((anime) => (
         <article key={anime.id} className={styles.card}>
-          <p className={styles.average}>⭐ {anime.average}</p>
+          <div className={styles.average}>
+            ⭐ {Number(anime.average).toFixed(1)}
+          </div>
+
           <div className={styles.imageWrapper}>
             <Image
               src={anime.capeImage}
@@ -20,9 +23,14 @@ export default async function AnimesCards() {
               priority={false}
             />
           </div>
+
           <div className={styles.info}>
             <h2 className={styles.title}>{anime.title}</h2>
             <p className={styles.synopsis}>{anime.synopisis}</p>
+          </div>
+
+          <div className={styles.containerButton}>
+            <button className={styles.buttonForm}>Ver pergaminho</button>
           </div>
         </article>
       ))}
