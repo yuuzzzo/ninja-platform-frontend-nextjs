@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./animesCards.module.css";
 import { animeService } from "@/services/NinjaApi.service";
+import Link from "next/link";
 
 export default async function AnimesCards() {
   const listaAnimes = await animeService.getAllAnimes();
@@ -30,7 +31,9 @@ export default async function AnimesCards() {
           </div>
 
           <div className={styles.containerButton}>
-            <button className={styles.buttonForm}>Ver pergaminho</button>
+            <Link href={`/animes/${anime.id}`}>
+              <button className={styles.buttonForm}>Ver pergaminho</button>
+            </Link>
           </div>
         </article>
       ))}
