@@ -30,7 +30,7 @@ export default function Login() {
           confirmButtonColor: "#3085d6",
         });
       }
-      router.push("/animes");
+      router.push("/generes");
     } catch (error) {
       Swal.fire({
         title: "Erro ao entrar no Dojo",

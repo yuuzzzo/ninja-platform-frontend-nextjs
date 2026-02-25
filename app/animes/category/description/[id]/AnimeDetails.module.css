@@ -7,10 +7,10 @@
   padding: 4rem 2rem;
   display: flex;
   justify-content: center;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeInSlideUp 0.8s ease-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInSlideUp {
   from {
     opacity: 0;
     transform: translateY(20px);

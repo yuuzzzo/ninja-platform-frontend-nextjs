@@ -22,6 +22,11 @@ export const animeService = {
     return resposta.json();
   },
 
+  async getCategoryAnimeById(id: number): Promise<Anime> {
+    const resposta = await fetch(`${BASE_URL}/animes/category/${id}`);
+    return resposta.json();
+  },
+
   async insertAnimes(
     insertAnime: Partial<InsertAnimes>,
   ): Promise<InsertAnimes> {
