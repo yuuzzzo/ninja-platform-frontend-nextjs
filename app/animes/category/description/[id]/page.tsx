@@ -8,7 +8,9 @@ export default async function AnimeDetails({
 }) {
   const { id } = await params;
 
-  const response = await fetch(`https://api.ninjaanimes/api/animes/${id}`);
+  const response = await fetch(
+    `https://api.ninjaanimes.com.br/api/animes/${id}`,
+  );
 
   const anime = await response.json();
 
