@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./animesCards.module.css";
 import Link from "next/link";
+import { useState } from "react";
 
 interface AnimeProps {
   anime: {
@@ -13,6 +16,12 @@ interface AnimeProps {
 }
 
 export default function AnimesCards({ anime }: AnimeProps) {
+  const [isDisabled, setDisabled] = useState(false);
+
+  function notDisabled() {
+    setDisabled(true);
+  }
+
   return (
     <article className={styles.card}>
       <div className={styles.average}>
@@ -40,7 +49,13 @@ export default function AnimesCards({ anime }: AnimeProps) {
           href={`/animes/category/description/${anime.id}`}
           className={styles.linkWrapper}
         >
-          <button className={styles.buttonForm}>Ver pergaminho</button>
+          <button
+            className={styles.buttonForm}
+            disabled={isDisabled}
+            onClick={() => notDisabled()}
+          >
+            {isDisabled ? "Carregando Pergaminho..." : "Ver Pergaminho"}
+          </button>
         </Link>
       </div>
     </article>

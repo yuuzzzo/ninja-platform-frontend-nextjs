@@ -1,15 +1,20 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { animeService } from "@/services/NinjaApi.service";
 import styles from "./insertAnimes.module.css";
 
-export default function insertAnimes() {
+export default function InsertAnimes() {
+  const [categoryId, setCategoryId] = useState("");
+
   async function enviaAnimesDb(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const insertAnime = Object.fromEntries(formData.entries());
+    const insertAnime = {
+      ...Object.fromEntries(formData.entries()),
+      categoryId: Number(formData.get("categoryId")),
+    };
 
     try {
       const response = await animeService.insertAnimes(insertAnime);
@@ -64,9 +69,11 @@ export default function insertAnimes() {
         <input
           className={styles.inputForm}
           name="categoryId"
-          type="text"
+          type="number"
           placeholder="Id da categoria do anime"
           required
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
         />
         <button className={styles.buttonForm} type="submit">
           Enviar Anime!
