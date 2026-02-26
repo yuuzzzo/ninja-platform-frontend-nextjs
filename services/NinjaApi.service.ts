@@ -3,7 +3,7 @@ import UsersRegister from "@/interfaces/UsersRegister";
 import UsersLogin from "@/interfaces/UsersLogin";
 import InsertAnimes from "@/interfaces/InsertAnimes";
 
-const BASE_URL = "https://ninja-platform-backend.onrender.com/api";
+const BASE_URL = "https://api.ninjaanimes.com.br/api";
 
 export const animeService = {
   async getAllAnimes(): Promise<Anime[]> {

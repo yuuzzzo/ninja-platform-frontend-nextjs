@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation"; // Corrigido para navigation
+import { useRouter } from "next/navigation";
 import { usersService } from "@/services/NinjaApi.service";
 import styles from "./page.module.css";
 import Image from "next/image";
@@ -14,7 +14,6 @@ export default function Register() {
   async function enviaCadastro(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // Captura os dados do formulário de forma simples
     const formData = new FormData(event.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 

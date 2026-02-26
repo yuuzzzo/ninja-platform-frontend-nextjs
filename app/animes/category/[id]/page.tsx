@@ -16,7 +16,7 @@ export default async function Category({
 }) {
   const { id } = await params;
   const response = await fetch(
-    `https://ninja-platform-backend.onrender.com/api/animes/category/${id}`,
+    `https://api.ninjaanimes.com.br/api/animes/category/${id}`,
   );
   const animes = await response.json();
   const respostaRequest = animes.anime;

@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ninja Animes",
+  description: "Recomendações de animes feitas pelo Ninja",
 };
 
 export const viewport = {
