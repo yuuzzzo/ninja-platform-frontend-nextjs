@@ -14,6 +14,15 @@ export default async function AnimeDetails({
 
   const anime = await response.json();
 
+  const categorys = [
+    { id: 1, Category: "Romance" },
+    { id: 2, Category: "Ação" },
+    { id: 3, Category: "Terror" },
+    { id: 5, Category: "Isekai" },
+    { id: 6, Category: "Sports" },
+    { id: 7, Category: "Clássicos" },
+  ];
+
   return (
     <main className={styles.container}>
       <div className={styles.content}>
@@ -32,7 +41,8 @@ export default async function AnimeDetails({
 
           <div className={styles.info}>
             <div className={styles.badge}>
-              {anime.category?.name || "Ninja Rank"}
+              {categorys.find((category) => category.id === anime.categoryId)
+                ?.Category || "Ninja Rank"}
             </div>
             <h1 className={styles.title}>{anime.title}</h1>
 
