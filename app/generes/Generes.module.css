@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 .container {
   display: grid;
   grid-template-columns: repeat(3, 240px);
@@ -9,7 +11,6 @@
   padding: 10px 20px;
   box-sizing: border-box;
 
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
   animation: fadeInSlideUp 0.8s ease-out forwards;
 }
 
@@ -18,15 +19,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 35vh;
   width: 100%;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
-  padding: 20px;
+  padding: 50px;
+  margin-bottom: 30px;
   box-sizing: border-box;
   animation: fadeInSlideUp 0.8s ease-out forwards;
 }
 
 .titulo {
+  margin-top: 100px;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -177,4 +178,35 @@
   .container {
     grid-template-columns: repeat(1, 240px);
   }
+}
+
+.footer {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px; /* Evita que o layout "pule" quando o texto sumir */
+  margin-top: 30px;
+  animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+
+.phrase {
+  font-family: "Nunito", sans-serif;
+  color: #a0a0a0; /* Um cinza claro para não tirar o foco dos botões */
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+
+  transition: all 0.3s ease-in-out;
+
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.phrase:not(:empty) {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }

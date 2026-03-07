@@ -28,7 +28,10 @@ export default async function AnimeDetails({
       <div className={styles.content}>
         <header className={styles.header}>
           <div className={styles.imageWrapper}>
-            <div className={styles.rating}>⭐ {anime.average}</div>
+            <div className={styles.rating}>
+              {(anime.average >= 85 && `NINJA TROPHY ${anime.average} 🏆`) ||
+                `⭐ ${anime.average}`}
+            </div>
             <Image
               src={anime.capeImage}
               width={350}
@@ -53,6 +56,12 @@ export default async function AnimeDetails({
           </div>
         </header>
 
+        <section className={styles.ninjaSectionPergaminho}>
+          <h2 className={styles.ninjaTitle}>
+            <span>📜</span> Pergaminho do Anime
+          </h2>
+          <p className={styles.opinionText}>{anime.opinionNinja}</p>
+        </section>
         <section className={styles.ninjaSection}>
           <h2 className={styles.ninjaTitle}>
             <span>🏮</span> Opinião do Ninja

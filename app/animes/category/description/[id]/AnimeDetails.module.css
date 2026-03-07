@@ -60,11 +60,11 @@
   position: absolute;
   top: -10px;
   right: -10px;
-  background: linear-gradient(135deg, #facc15, #eab308);
+  background: linear-gradient(135deg, #b89712, #ffbf00);
   color: #000;
   padding: 8px 15px;
   border-radius: 8px;
-  font-weight: 900;
+  font-weight: 800;
   box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
   z-index: 10;
 }
@@ -148,6 +148,28 @@
   width: 4px;
   height: 100%;
   background: linear-gradient(to bottom, #dc2626, #7f1d1d);
+}
+
+.ninjaSectionPergaminho {
+  margin-top: 5rem;
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 3px 3px 30px black;
+}
+
+.ninjaSectionPergaminho::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ffd490, #ca9c51);
 }
 
 .ninjaTitle {
