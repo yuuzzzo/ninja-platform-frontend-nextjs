@@ -60,7 +60,17 @@ export default async function AnimeDetails({
           <h2 className={styles.ninjaTitle}>
             <span>📜</span> Pergaminho do Anime
           </h2>
-          <p className={styles.opinionText}>{anime.opinionNinja}</p>
+          <p className={styles.opinionText}>
+            `Temporadas: ${anime.Temp}` `Episodes: ${anime.episodes}` `Duração
+            dos Episódios: ${anime.DurationEp}`
+            {anime.StatusFinished
+              ? "Anime já finalizado!"
+              : "O Anime ainda está sendo lançado!"}
+            {anime.StreamingPlatforms.map(
+              (streamings: any) => `Plataformas para assistir: ${streamings}`,
+            )}
+            {anime.Studios.map((studios: any) => `Studios: ${studios}`)}
+          </p>
         </section>
         <section className={styles.ninjaSection}>
           <h2 className={styles.ninjaTitle}>
