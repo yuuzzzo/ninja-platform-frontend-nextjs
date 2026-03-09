@@ -72,9 +72,8 @@ export default async function AnimeDetails({
               ? "Anime já finalizado!"
               : "O Anime ainda está sendo lançado!"}
             <br />
-            {anime.StreamingPlatforms.map(
-              (streamings: any) => `Plataformas para assistir: ${streamings}`,
-            )}
+            Plataformas para asssitir:{" "}
+            {anime.StreamingPlatforms.map((streaming: any) => streaming)}
             <br />
             {anime.Studios.map((studios: any) => `Studios: ${studios}`)}
             <br />
