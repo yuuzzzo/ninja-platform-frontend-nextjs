@@ -62,20 +62,19 @@ export default async function AnimeDetails({
           </h2>
           <p className={styles.opinionText}>
             Temporadas:{" "}
-            {anime.Temp == 1 ? `${anime.Temp} Temp` : `${anime.Temp} Temps`}
+            {anime.Temp == 1 ? `${anime.Temp} Temp.` : `${anime.Temp} Temps.`}
             <br />
             Episodios: {anime.episodes} Eps.
             <br />
             Duração dos Episódios: {anime.DurationEp} minutos.
             <br />
             {anime.StatusFinished
-              ? "Anime já finalizado!"
-              : "O Anime ainda está sendo lançado!"}
+              ? "Status: Anime já foi finalizado!"
+              : "Status: O Anime ainda está sendo lançado!"}
             <br />
-            Plataformas para asssitir:{" "}
-            {anime.StreamingPlatforms.map((streaming: any) => streaming)}
+            Plataformas para Assistir: {anime.StreamingPlatforms.join(", ")}.
             <br />
-            {anime.Studios.map((studios: any) => `Studios: ${studios}`)}
+            Studios: {anime.Studios.join(", ")}
             <br />
           </p>
         </section>
