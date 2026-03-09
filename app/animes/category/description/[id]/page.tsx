@@ -61,11 +61,11 @@ export default async function AnimeDetails({
             <span>📜</span> Pergaminho do Anime
           </h2>
           <p className={styles.opinionText}>
-            Temporadas: {anime.Temp}
+            Temporadas: {anime.Temp == 1 ? "Temporada" : "Temporadas"}
             <br />
-            Episodios: {anime.episodes}
+            Episodios: {anime.episodes} Eps.
             <br />
-            Duração dos Episódios: {anime.DurationEp}
+            Duração dos Episódios: {anime.DurationEp} minutos.
             <br />
             {anime.StatusFinished
               ? "Anime já finalizado!"
