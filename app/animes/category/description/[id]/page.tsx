@@ -62,11 +62,15 @@ export default async function AnimeDetails({
           </h2>
           <p className={styles.opinionText}>
             Temporadas: {anime.Temp}
+            <br />
             Episodios: {anime.episodes}
+            <br />
             Duração dos Episódios: {anime.DurationEp}
+            <br />
             {anime.StatusFinished
               ? "Anime já finalizado!"
               : "O Anime ainda está sendo lançado!"}
+            <br />
             {anime.StreamingPlatforms.map(
               (streamings: any) => `Plataformas para assistir: ${streamings}`,
             )}
