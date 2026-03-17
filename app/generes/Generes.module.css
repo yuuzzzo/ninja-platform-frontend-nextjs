@@ -1,57 +1,126 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 240px);
-
-  justify-content: center;
-
-  gap: 30px 25px;
-
-  padding: 10px 20px;
-  box-sizing: border-box;
-
-  animation: fadeInSlideUp 0.8s ease-out forwards;
+/* ── Animações ─────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes titleReveal {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes shimmerSweep {
+  to { transform: translateX(300%) skewX(-15deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+@keyframes phraseSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Wrapper geral ─────────────────────────────────────────────────── */
 .mainWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 50px;
-  margin-bottom: 30px;
+  padding: 50px 20px 20px;
   box-sizing: border-box;
-  animation: fadeInSlideUp 0.8s ease-out forwards;
 }
 
+/* ── Título ────────────────────────────────────────────────────────── */
 .titulo {
-  margin-top: 100px;
-  margin-bottom: 15px;
+  margin-top: 80px;
+  margin-bottom: 28px;
   text-align: center;
+  animation: titleReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow — linha de contexto acima do título */
+.tituloEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #c9a84c;
+  margin: 0 0 14px;
+  opacity: 0.8;
 }
 
 .titulo h1 {
-  color: #fff;
-  font-size: 2rem;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin: 0 0 16px;
+  line-height: 1.1;
+  text-shadow: 0 2px 40px rgba(255, 255, 255, 0.06);
+}
+
+/* Linha dourada abaixo do h1 */
+.titulo h1::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(to right, #c9a84c, transparent);
+  margin: 14px auto 0;
+  border-radius: 1px;
+}
+
+/* Subtítulo descritivo */
+.tituloSub {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #444444;
+  font-style: italic;
+  letter-spacing: 0.3px;
   margin: 0;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  max-width: 380px;
+  line-height: 1.6;
 }
 
-@keyframes fadeInSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ── Grid de gêneros ───────────────────────────────────────────────── */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 240px);
+  justify-content: center;
+  gap: 28px 22px;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
+
+/* Stagger de entrada nos botões */
+.container a:nth-child(1) button { animation: buttonIn 0.5s ease-out 0.05s both; }
+.container a:nth-child(2) button { animation: buttonIn 0.5s ease-out 0.12s both; }
+.container a:nth-child(3) button { animation: buttonIn 0.5s ease-out 0.19s both; }
+.container a:nth-child(4) button { animation: buttonIn 0.5s ease-out 0.26s both; }
+.container a:nth-child(5) button { animation: buttonIn 0.5s ease-out 0.33s both; }
+.container a:nth-child(6) button { animation: buttonIn 0.5s ease-out 0.40s both; }
 
 .container a {
   text-decoration: none !important;
@@ -60,153 +129,193 @@
   justify-content: center;
 }
 
+/* ── Botão de gênero ───────────────────────────────────────────────── */
 .genreButton {
   position: relative;
   width: 240px;
   height: 140px;
-  background: linear-gradient(145deg, #1a1a1a, #111111);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  color: #fff;
-  font-size: 1.1rem;
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  color: #cccccc;
+  font-size: 1rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-.genreButton::after {
+/* Shimmer sweep no hover */
+.genreButton::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) skewX(-15deg);
   pointer-events: none;
+  z-index: 0;
+}
+
+/* Aura dourada centralizada */
+.genreButton::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: #c9a84c;
+  border-radius: 50%;
+  filter: blur(45px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .genreButton:hover {
   transform: translateY(-10px);
-  background: #222;
-}
-
-.genreButton::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: var(--aura-color, #dc2626);
-  filter: blur(50px);
-  opacity: 0;
-  transition: opacity 0.4s;
-  z-index: 0;
+  background: #131313;
+  border-color: rgba(201, 168, 76, 0.45);
+  color: #ffffff;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(201, 168, 76, 0.15),
+    0 0 30px rgba(201, 168, 76, 0.06);
 }
 
 .genreButton:hover::before {
-  opacity: 0.3;
+  animation: shimmerSweep 0.8s ease forwards;
 }
 
+.genreButton:hover::after {
+  opacity: 0.22;
+}
+
+/* Feedback de clique — press down */
+.genreButton:active {
+  transform: translateY(-5px) scale(0.98);
+}
+
+/* Ripple no clique — pseudo do span interno */
+.genreButton:focus-visible {
+  outline: 2px solid rgba(201, 168, 76, 0.5);
+  outline-offset: 3px;
+}
+
+/* ── Ícone ─────────────────────────────────────────────────────────── */
 .icon {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   z-index: 1;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
 }
 
 .genreButton:hover .icon {
-  transform: scale(1.2) rotate(-5deg);
+  transform: scale(1.25) rotate(-8deg);
+  animation: float 2s ease-in-out infinite;
 }
 
-.romance:hover {
-  --aura-color: #ff4d94;
-  border-color: #ff4d94;
+/* Label do gênero */
+.genreButton span:last-child {
+  z-index: 1;
+  transition: letter-spacing 0.3s ease;
 }
 
-.action:hover {
-  --aura-color: #ff4500;
-  border-color: #ff4500;
+.genreButton:hover span:last-child {
+  letter-spacing: 3px;
 }
 
-.terror:hover {
-  --aura-color: #ff0000;
-  border-color: #ff0000;
-}
-
-.mystery:hover {
-  --aura-color: #1e90ff;
-  border-color: #1e90ff;
-}
-
-.isekai:hover {
-  --aura-color: #00ff7f;
-  border-color: #00ff7f;
-}
-
-.sports:hover {
-  --aura-color: #ffd700;
-  border-color: #ffd700;
-}
-
+/* ── Classes de gênero — todas usam aura dourada para coesão premium ── */
+.romance:hover,
+.action:hover,
+.terror:hover,
+.isekai:hover,
+.sports:hover,
 .classics:hover {
-  --aura-color: #ffffff;
-  border-color: #ffffff;
+  border-color: rgba(201, 168, 76, 0.45);
 }
 
-@media (max-width: 850px) {
-  .container {
-    grid-template-columns: repeat(2, 240px);
-  }
-}
-
-@media (max-width: 550px) {
-  .container {
-    grid-template-columns: repeat(1, 240px);
-  }
-}
-
+/* ── Footer com frase ──────────────────────────────────────────────── */
 .footer {
   width: 100%;
-  padding: 40px 20px;
+  padding: 36px 20px 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100px; /* Evita que o layout "pule" quando o texto sumir */
-  margin-top: 30px;
-  animation: fadeInSlideUp 0.8s ease-out forwards;
+  min-height: 90px;
+  margin-top: 20px;
 }
 
 .phrase {
   font-family: "Nunito", sans-serif;
-  color: #a0a0a0; /* Um cinza claro para não tirar o foco dos botões */
-  font-size: 1.3rem;
-  font-weight: 300;
+  color: transparent;
+  font-size: 1.2rem;
+  font-weight: 400;
   font-style: italic;
   text-align: center;
-  max-width: 600px;
-  line-height: 1.6;
-
-  transition: all 0.3s ease-in-out;
-
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  max-width: 560px;
+  line-height: 1.7;
+  pointer-events: none;
+  user-select: none;
 }
 
 .phrase:not(:empty) {
-  color: #ffffff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  color: #777777;
+  animation: phraseSlideUp 0.3s ease-out both;
+}
+
+/* ── Responsividade ────────────────────────────────────────────────── */
+@media (max-width: 850px) {
+  .container { grid-template-columns: repeat(2, 240px); }
+  .mainWrapper { padding: 40px 16px 16px; }
+}
+
+@media (max-width: 560px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 12px;
+    padding: 8px 14px;
+    width: 100%;
+  }
+
+  .container a { width: 100%; }
+
+  .genreButton {
+    width: 100%;
+    height: 110px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .icon { font-size: 1.8rem; }
+
+  .titulo { margin-top: 60px; margin-bottom: 16px; }
+  .titulo h1 { font-size: 1.35rem; letter-spacing: 2px; }
+  .tituloEyebrow { font-size: 0.62rem; letter-spacing: 2px; }
+  .tituloSub { font-size: 0.76rem; max-width: 280px; }
+
+  .phrase { font-size: 1rem; }
+  .footer { padding: 24px 16px 36px; }
+}
+
+@media (max-width: 340px) {
+  .container { grid-template-columns: 1fr; }
+  .genreButton { width: 260px; }
 }

@@ -57,7 +57,11 @@ export default function Generes() {
     <>
       <main className={styles.mainWrapper}>
         <div className={styles.titulo}>
-          <h1>Está procurando o que hoje Genin?</h1>
+          <p className={styles.tituloEyebrow}>⚔️ Dojo Ninja — Curadoria Premium</p>
+          <h1>Está procurando<br />o que hoje, Genin?</h1>
+          <p className={styles.tituloSub}>
+            Escolha seu gênero e mergulhe nos melhores pergaminhos selecionados
+          </p>
         </div>
       </main>
       <section className={styles.container}>

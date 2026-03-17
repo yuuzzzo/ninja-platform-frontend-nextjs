@@ -1,25 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
-.container {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1a1a1a 0%, black 100%);
-  color: #fff;
-  padding: 4rem 2rem;
-  display: flex;
-  justify-content: center;
-  animation: fadeInSlideUp 0.8s ease-out forwards;
+/* ── Keyframes ──────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+@keyframes shimmerSweep {
+  to { transform: translateX(300%) skewX(-15deg); }
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Página ─────────────────────────────────────────────────────────── */
+.container {
+  min-height: 100vh;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, #161616 0%, #080808 70%);
+  color: #fff;
+  padding: 3rem 2rem 6rem;
+  display: flex;
+  justify-content: center;
+  animation: fadeUp 0.7s ease-out both;
 }
 
 .content {
@@ -27,166 +31,327 @@
   width: 100%;
 }
 
+/* ── Header hero ────────────────────────────────────────────────────── */
 .header {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  /* padding-top garante folga visual para o .rating com top: -14px não solapar */
+  padding-top: 18px;
 }
 
 @media (min-width: 768px) {
-  .header {
-    flex-direction: row;
-  }
+  .header { flex-direction: row; align-items: flex-start; }
 }
 
-.imageWrapper {
+/* ─────────────────────────────────────────────────────────────────────
+   imageContainer — position: relative para o badge flutuante
+   NÃO tem overflow: hidden para não cortar o badge
+   ──────────────────────────────────────────────────────────────────── */
+.imageContainer {
   position: relative;
+  flex-shrink: 0;
+  width: fit-content;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.imageWrapper:hover {
-  transform: scale(1.03);
-}
+.imageContainer:hover { transform: scale(1.03); }
 
-.image {
+/* ─────────────────────────────────────────────────────────────────────
+   imageWrapper — overflow: hidden apenas para clipar o shimmer da imagem
+   Não afeta o badge porque o badge está em imageContainer
+   ──────────────────────────────────────────────────────────────────── */
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 0 30px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(220, 38, 38, 0.2);
 }
 
+/* Shimmer sweep na imagem */
+.imageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+
+.imageContainer:hover .imageWrapper::after {
+  animation: shimmerSweep 0.85s ease forwards;
+}
+
+/* ── Imagem ─────────────────────────────────────────────────────────── */
+.image {
+  display: block;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.9);
+  transition: box-shadow 0.4s ease;
+}
+
+.imageContainer:hover .image {
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(201, 168, 76, 0.08);
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Rating badge — posicionado em imageContainer, NÃO clipado
+   ──────────────────────────────────────────────────────────────────── */
 .rating {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: linear-gradient(135deg, #b89712, #ffbf00);
-  color: #000;
-  padding: 8px 15px;
+  top: -14px;
+  right: -14px;
+  background: linear-gradient(135deg, #7a5c08, #c9a84c, #e8d080);
+  color: #0a0800;
+  padding: 7px 13px;
   border-radius: 8px;
-  font-weight: 800;
-  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
-  z-index: 10;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+  box-shadow:
+    0 4px 20px rgba(201, 168, 76, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+  animation: float 3s ease-in-out infinite;
+  white-space: nowrap;
 }
 
+/* ── Info ───────────────────────────────────────────────────────────── */
 .info {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.8rem;
+  animation: fadeUp 0.7s ease-out 0.15s both;
 }
 
-.title {
-  font-family: "Nunito", sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  background: linear-gradient(to right, #fff, #888);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -2px;
-}
-
+/* Badge de categoria */
 .badge {
-  padding: 8px 20px;
-  background: rgba(220, 38, 38, 0.15);
-  border: 1px solid #dc2626;
-  color: #ef4444;
+  padding: 6px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.55);
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   width: fit-content;
-  box-shadow: 0 0 15px rgba(220, 38, 38, 0.1);
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.sectionTitle {
-  font-size: 1rem;
-  color: #666;
+.badge:hover {
+  border-color: rgba(201, 168, 76, 0.35);
+  color: rgba(201, 168, 76, 0.8);
+}
+
+/* Título — BRANCO, sem dourado */
+.title {
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 1rem;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1.08;
+  text-shadow: 0 2px 40px rgba(255, 255, 255, 0.06);
+}
+
+/* ── Sinopse ────────────────────────────────────────────────────────── */
+.sectionTitle {
+  font-size: 0.68rem;
+  color: #444444;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 0.8rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  font-weight: 700;
 }
 
 .sectionTitle::after {
   content: "";
   height: 1px;
   flex: 1;
-  background: linear-gradient(to right, #333, transparent);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.07), transparent);
 }
 
 .synopsis {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #aaa;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #888888;
   font-style: italic;
-  position: relative;
-  padding-left: 20px;
-  border-left: 2px solid #333;
+  padding-left: 18px;
+  border-left: 2px solid rgba(255, 255, 255, 0.07);
+  transition: border-color 0.35s ease, color 0.35s ease;
 }
 
-.ninjaSection {
-  margin-top: 5rem;
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  padding: 3rem;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 3px 3px 30px black;
+.synopsis:hover {
+  border-left-color: rgba(201, 168, 76, 0.35);
+  color: #aaaaaa;
 }
 
-.ninjaSection::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, #dc2626, #7f1d1d);
-}
-
+/* ── Seção Pergaminho ───────────────────────────────────────────────── */
 .ninjaSectionPergaminho {
-  margin-top: 5rem;
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  padding: 3rem;
-  border-radius: 24px;
+  margin-top: 4rem;
+  background: rgba(12, 10, 3, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2.5rem;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
-  box-shadow: 3px 3px 30px black;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  animation: fadeUp 0.7s ease-out 0.3s both;
+  transition: border-color 0.35s ease;
 }
 
+.ninjaSectionPergaminho:hover {
+  border-color: rgba(201, 168, 76, 0.14);
+}
+
+/* Barra lateral dourada */
 .ninjaSectionPergaminho::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, #ffd490, #ca9c51);
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, #e8d080, #c9a84c, #7a5c08);
 }
 
+/* Shimmer interno */
+.ninjaSectionPergaminho::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(201, 168, 76, 0.025) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+
+.ninjaSectionPergaminho:hover::after {
+  animation: shimmerSweep 1s ease forwards;
+}
+
+/* ── Seção Opinião ──────────────────────────────────────────────────── */
+.ninjaSection {
+  margin-top: 2.5rem;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  animation: fadeUp 0.7s ease-out 0.45s both;
+  transition: border-color 0.35s ease;
+}
+
+.ninjaSection:hover {
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+/* Barra lateral branca */
+.ninjaSection::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.04));
+}
+
+.ninjaSection::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+
+.ninjaSection:hover::after {
+  animation: shimmerSweep 1s ease forwards;
+}
+
+/* ── Títulos internos ───────────────────────────────────────────────── */
 .ninjaTitle {
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-size: 1.8rem;
+  gap: 14px;
+  font-size: 1.4rem;
   font-weight: 900;
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+  margin-bottom: 1.8rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+  /* position: relative + z-index garante que o texto fique ACIMA do shimmer ::after */
+  position: relative;
+  z-index: 1;
 }
 
+.ninjaTitle span {
+  font-size: 1.6rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Texto ──────────────────────────────────────────────────────────── */
 .opinionText {
-  color: #d1d5db;
-  line-height: 2;
-  font-size: 1.15rem;
-  letter-spacing: 0.5px;
+  color: #999999;
+  line-height: 2.1;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  /* position: relative garante que fique acima do shimmer ::after */
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsividade ─────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .container { padding: 2.5rem 1.2rem 4rem; }
+
+  .imageContainer {
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  .image {
+    width: 220px !important;
+    height: auto !important;
+  }
+
+  .title { font-size: clamp(1.5rem, 7vw, 2.2rem); letter-spacing: -0.5px; }
+
+  .ninjaSectionPergaminho,
+  .ninjaSection { padding: 1.8rem 1.4rem; }
+
+  .ninjaTitle { font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 2rem 1rem 3rem; }
+  .rating { font-size: 0.75rem; padding: 5px 10px; top: -10px; right: -10px; }
+  .opinionText { font-size: 0.95rem; line-height: 1.9; }
 }

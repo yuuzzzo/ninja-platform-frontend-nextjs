@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./AnimeDetails.module.css";
+import BackButton from "@/components/BackButton";
 
 export default async function AnimeDetails({
   params,
@@ -26,20 +27,32 @@ export default async function AnimeDetails({
   return (
     <main className={styles.container}>
       <div className={styles.content}>
+        <BackButton
+          href={`/animes/category/${anime.categoryId}`}
+          label="Voltar à lista"
+        />
+
         <header className={styles.header}>
-          <div className={styles.imageWrapper}>
+          {/*
+            imageContainer → position: relative para o badge (SEM overflow: hidden)
+            imageWrapper   → overflow: hidden apenas para clipar o shimmer da imagem
+          */}
+          <div className={styles.imageContainer}>
             <div className={styles.rating}>
-              {(anime.average >= 85 && `NINJA TROPHY ${anime.average} 🏆`) ||
-                `⭐ ${anime.average}`}
+              {Number(anime.average) >= 85
+                ? `🏆 NINJA TROPHY ${Number(anime.average).toFixed(1)}`
+                : `⭐ ${Number(anime.average).toFixed(1)}`}
             </div>
-            <Image
-              src={anime.capeImage}
-              width={350}
-              height={500}
-              alt={anime.title}
-              className={styles.image}
-              priority
-            />
+            <div className={styles.imageWrapper}>
+              <Image
+                src={anime.capeImage}
+                width={310}
+                height={440}
+                alt={anime.title}
+                className={styles.image}
+                priority
+              />
+            </div>
           </div>
 
           <div className={styles.info}>
@@ -75,9 +88,9 @@ export default async function AnimeDetails({
             Plataformas para Assistir: {anime.StreamingPlatforms.join(", ")}.
             <br />
             Studios: {anime.Studios.join(", ")}
-            <br />
           </p>
         </section>
+
         <section className={styles.ninjaSection}>
           <h2 className={styles.ninjaTitle}>
             <span>🏮</span> Opinião do Ninja

@@ -1,0 +1,93 @@
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* ── Botão base ────────────────────────────────────────────────────── */
+.backButton {
+  /* flex + width: fit-content garante comportamento de bloco com margin correta */
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  /* margin-bottom cria separação entre o botão e o conteúdo da página */
+  margin-bottom: 2rem;
+  color: #555555;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  padding: 9px 16px 9px 13px;
+  cursor: pointer;
+  animation: fadeLeft 0.4s ease-out both;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.2s ease,
+    opacity 0.25s ease;
+}
+
+.backButton:hover:not(:disabled) {
+  color: #cccccc;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(-3px);
+}
+
+.backButton:active:not(:disabled) {
+  transform: translateX(-1px) scale(0.98);
+}
+
+/* ── Estado de carregando ──────────────────────────────────────────── */
+.loading {
+  color: #c9a84c;
+  border-color: rgba(201, 168, 76, 0.25);
+  background: rgba(201, 168, 76, 0.04);
+  cursor: default;
+  animation: pulse 1.2s ease-in-out infinite;
+  transform: none !important;
+}
+
+/* ── Arrow ─────────────────────────────────────────────────────────── */
+.arrow {
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.backButton:hover:not(:disabled) .arrow {
+  transform: translateX(-3px);
+}
+
+/* ── Label ─────────────────────────────────────────────────────────── */
+.label {
+  display: inline-block;
+  min-width: 60px; /* evita layout shift ao trocar de texto */
+}
+
+/* ── Spinner (estado voltando) ─────────────────────────────────────── */
+.spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid rgba(201, 168, 76, 0.25);
+  border-top-color: #c9a84c;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
