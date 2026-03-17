@@ -33,10 +33,6 @@ export default async function AnimeDetails({
         />
 
         <header className={styles.header}>
-          {/*
-            imageContainer → position: relative para o badge (SEM overflow: hidden)
-            imageWrapper   → overflow: hidden apenas para clipar o shimmer da imagem
-          */}
           <div className={styles.imageContainer}>
             <div className={styles.rating}>
               {Number(anime.average) >= 85
