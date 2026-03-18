@@ -2,6 +2,15 @@ import Image from "next/image";
 import styles from "./AnimeDetails.module.css";
 import BackButton from "@/components/BackButton";
 
+const PLATFORM_CLASS: Record<string, string> = {
+  Netflix: styles.platformNetflix,
+  Crunchyroll: styles.platformCrunchyroll,
+  "Amazon Prime": styles.platformAmazonPrime,
+  Funimation: styles.platformFunimation,
+  "Disney+": styles.platformDisney,
+  HiDive: styles.platformHidive,
+};
+
 export default async function AnimeDetails({
   params,
 }: {
@@ -69,23 +78,67 @@ export default async function AnimeDetails({
           <h2 className={styles.ninjaTitle}>
             <span>📜</span> Pergaminho do Anime
           </h2>
-          <p className={styles.opinionText}>
-            Temporadas:{" "}
-            {anime.Temp == 1 ? `${anime.Temp} Temp.` : `${anime.Temp} Temps.`}
-            <br />
-            Episodios: {anime.episodes} Eps.
-            <br />
-            Duração dos Episódios: {anime.DurationEp} minutos.
-            <br />
-            {anime.StatusFinished
-              ? "Status: Anime já foi finalizado!"
-              : "Status: O Anime ainda está sendo lançado!"}
-            <br />
-            Plataformas para Assistir: {anime.StreamingPlatforms.join(", ")}.
-            <br />
-            Studios: {anime.Studios.join(", ")}
-          </p>
+
+          <div className={styles.statsGrid}>
+            <div className={styles.statCard}>
+              <span className={styles.statIcon}>🎬</span>
+              <span className={styles.statLabel}>Temporadas</span>
+              <span className={styles.statValue}>
+                {anime.Temp} {anime.Temp == 1 ? "Temp." : "Temps."}
+              </span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statIcon}>📺</span>
+              <span className={styles.statLabel}>Episódios</span>
+              <span className={styles.statValue}>{anime.episodes} Eps.</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statIcon}>⏱️</span>
+              <span className={styles.statLabel}>Duração / Ep.</span>
+              <span className={styles.statValue}>{anime.DurationEp} min</span>
+            </div>
+          </div>
+ 
+          <div className={styles.chipsSection}>
+            <span className={styles.chipsLabel}>Plataformas</span>
+            <div className={styles.chipsRow}>
+              {anime.StreamingPlatforms.map((platform: string) => (
+                <span
+                  key={platform}
+                  className={`${styles.platformChip} ${PLATFORM_CLASS[platform] ?? ""}`}
+                >
+                  {platform}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.chipsSection}>
+            <span className={styles.chipsLabel}>Estúdios</span>
+            <div className={styles.chipsRow}>
+              {anime.Studios.map((studio: string) => (
+                <span key={studio} className={styles.studioChip}>
+                  {studio}
+                </span>
+              ))}
+            </div>
+          </div>
+
+        <div className={`${styles.statCard} ${styles.statusCard} ${anime.StatusFinished ? styles.finished : styles.ongoing}`}>
+            <span className={styles.statIcon}>
+              {anime.StatusFinished ? "✅" : "🔥"}
+            </span>
+            <div className={styles.statusInfo}>
+              <span className={styles.statLabel}>Status</span>
+              <span className={styles.statValue}>
+                {anime.StatusFinished
+                  ? "Anime Finalizado"
+                  : "Anime Em andamento"}
+              </span>
+            </div>
+          </div>
         </section>
+      
 
         <section className={styles.ninjaSection}>
           <h2 className={styles.ninjaTitle}>
