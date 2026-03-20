@@ -57,7 +57,6 @@ export default async function Category({
           <span className={styles.countLabel}>pergaminhos</span>
         </div>
       </header>
-
       {/* ── Linha divisória ── */}
       <div className={styles.divider} />
 

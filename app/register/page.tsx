@@ -33,7 +33,7 @@ export default function Register() {
     } catch (error) {
       Swal.fire({
         title: "Erro ao realizar cadastro",
-        text: "Por favor verifique os dados!",
+        text: "Por favor verifique os dados e valide a senha se é acima de 6 digitos!",
         icon: "error",
         confirmButtonColor: "#d33",
       });
@@ -80,7 +80,7 @@ export default function Register() {
           className={styles.inputForm}
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder="Senha igual ou acima de 6 digitos"
           required
           disabled={isLoading}
         />
