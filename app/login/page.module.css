@@ -249,6 +249,46 @@
   cursor: not-allowed;
 }
 
+/* ── Link esqueci senha ─────────────────────────────────────────────── */
+.linkEsqueci {
+  background: transparent;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(201, 168, 76, 0.6);
+  cursor: pointer;
+  padding: 4px 0;
+  align-self: center;
+  letter-spacing: 0.3px;
+  transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.linkEsqueci:hover {
+  color: rgba(201, 168, 76, 1);
+  transform: translateY(-1px);
+}
+
+.linkEsqueci:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ── Texto informativo recuperação ──────────────────────────────────── */
+.recoveryInfo {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.recoveryInfo strong {
+  color: rgba(201, 168, 76, 0.8);
+  font-weight: 700;
+}
+
 /* ── Responsividade ─────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .formContainer { padding: 2rem 1.5rem; border-radius: 16px; }

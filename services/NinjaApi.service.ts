@@ -3,7 +3,7 @@ import UsersRegister from "@/interfaces/UsersRegister";
 import UsersLogin from "@/interfaces/UsersLogin";
 import InsertAnimes from "@/interfaces/InsertAnimes";
 
-const BASE_URL = "https://api.ninjaanimes.com.br/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.ninjaanimes.com.br/api";
 
 export const animeService = {
   async getAllAnimes(): Promise<Anime[]> {
@@ -42,6 +42,35 @@ export const animeService = {
     if (!resposta.ok) {
       throw new Error("Não foi possivel enviar o anime para o banco!");
     }
+
+    return await resposta.json();
+  },
+};
+
+export const passwordService = {
+  async esqueciSenha(email: string, user: string): Promise<{ resetToken: string }> {
+    const resposta = await fetch(`${BASE_URL}/esqueci-senha`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, user }),
+    });
+
+    if (!resposta.ok) throw new Error("Credenciais não encontradas na base Ninja.");
+
+    return await resposta.json();
+  },
+
+  async redefinirSenha(
+    token: string,
+    newPassword: string,
+  ): Promise<{ message: string }> {
+    const resposta = await fetch(`${BASE_URL}/redefinir-senha`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, newPassword }),
+    });
+
+    if (!resposta.ok) throw new Error("Token inválido ou expirado.");
 
     return await resposta.json();
   },
