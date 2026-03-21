@@ -1,5 +1,5 @@
-import AnimesCards from "@/components/AnimesCards";
 import BackButton from "@/components/BackButton";
+import CategorySearch from "./CategorySearch";
 import styles from "./CategoryCards.module.css";
 
 interface Anime {
@@ -60,12 +60,7 @@ export default async function Category({
       {/* ── Linha divisória ── */}
       <div className={styles.divider} />
 
-      {/* ── Grid de cards ── */}
-      <div className={styles.gridContainer}>
-        {respostaRequest.map((anime) => (
-          <AnimesCards key={anime.id} anime={anime} />
-        ))}
-      </div>
+      <CategorySearch animes={respostaRequest} />
     </main>
   );
 }

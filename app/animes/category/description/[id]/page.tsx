@@ -61,12 +61,15 @@ export default async function AnimeDetails({
           </div>
 
           <div className={styles.info}>
-            <div className={styles.badge}>
-              {categorys.find((category) => category.id === anime.categoryId)
-                ?.Category || "Ninja Rank"}
+            <div className={styles.badgeRow}>
+              {anime.SubCategorias.map((datas: string) => (
+                <div key={datas} className={styles.badge}>
+                  {datas}
+                </div>
+              ))}
             </div>
             <h1 className={styles.title}>{anime.title}</h1>
-
+            <span className={styles.releaseDate}>Ano de lançamento: {anime.DataLancamento}</span>
             <div>
               <h3 className={styles.sectionTitle}>Sinopse</h3>
               <p className={styles.synopsis}>{anime.synopisis}</p>

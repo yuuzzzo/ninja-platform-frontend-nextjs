@@ -189,6 +189,104 @@
   margin: 0 0 8px;
 }
 
+/* ── Barra de pesquisa ─────────────────────────────────────────────── */
+.searchWrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding: 16px 32px 8px;
+  box-sizing: border-box;
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.searchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  color: #555555;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 13px 48px 13px 46px;
+  color: #eeeeee;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.searchInput::placeholder {
+  color: #404040;
+}
+
+.searchInput:focus {
+  border-color: rgba(201, 168, 76, 0.35);
+  background: rgba(201, 168, 76, 0.04);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.06);
+}
+
+.searchClear {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #555555;
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+  line-height: 1;
+}
+
+.searchClear:hover {
+  color: #aaaaaa;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.searchCount {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  color: #555555;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ── Estado vazio ────────────────────────────────────────────────── */
+.emptyState {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
+  opacity: 0.5;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+}
+
+.emptyText {
+  color: #666666;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
 /* ── Grid de cards ─────────────────────────────────────────────────── */
 .gridContainer {
   display: grid;
@@ -227,6 +325,7 @@
   .categoryIcon { font-size: 3.2rem; }
   .categoryCount { padding: 12px 18px; }
   .countNumber { font-size: 1.8rem; }
+  .searchWrapper { padding: 12px 20px 6px; }
   .gridContainer { padding: 20px 20px 50px; gap: 16px; }
 }
 
