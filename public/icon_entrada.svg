@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" role="img" aria-label="Logo Ninja">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f3d16b"/>
+      <stop offset="100%" stop-color="#b38c2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="220" fill="none"/>
+  <text x="50%" y="55%" text-anchor="middle" font-family="'Noto Sans', 'Segoe UI', sans-serif" font-size="110" font-weight="900" fill="url(#goldGradient)" stroke="#fff" stroke-width="2" filter="url(#shadow)">
+    Ninja
+  </text>
+  <text x="50%" y="85%" text-anchor="middle" font-family="'Noto Sans', 'Segoe UI', sans-serif" font-size="32" fill="#ffffff" opacity="0.88">
+    Animes
+  </text>
+</svg>

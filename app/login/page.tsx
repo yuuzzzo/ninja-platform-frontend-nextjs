@@ -34,8 +34,9 @@ export default function Login() {
           icon: "success",
           confirmButtonColor: "#3085d6",
         });
+        localStorage.setItem('loggedIn', 'true');
       }
-      router.push("/generes");
+      router.push("/pageIntroduction");
     } catch (error) {
       Swal.fire({
         title: "Erro ao entrar no Dojo",
