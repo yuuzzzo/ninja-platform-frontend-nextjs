@@ -13,31 +13,28 @@ const PLATFORM_CLASS: Record<string, string> = {
 
 export default async function AnimeDetails({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ from?: string }>;
 }) {
   const { id } = await params;
+  const { from } = await searchParams;
 
   const response = await fetch(
     `https://api.ninjaanimes.com.br/api/animes/${id}`,
   );
 
   const anime = await response.json();
-
-  const categorys = [
-    { id: 1, Category: "Romance" },
-    { id: 2, Category: "Ação" },
-    { id: 3, Category: "Terror" },
-    { id: 5, Category: "Isekai" },
-    { id: 6, Category: "Sports" },
-    { id: 7, Category: "Clássicos" },
-  ];
+  const fallbackHref = `/animes/category/${anime.categoryId}`;
+  const backHref =
+    from && from.startsWith("/animes/category/") ? from : fallbackHref;
 
   return (
     <main className={styles.container}>
       <div className={styles.content}>
         <BackButton
-          href={`/animes/category/${anime.categoryId}`}
+          href={backHref}
           label="Voltar à lista"
         />
 

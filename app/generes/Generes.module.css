@@ -121,6 +121,7 @@
 .container a:nth-child(4) button { animation: buttonIn 0.5s ease-out 0.26s both; }
 .container a:nth-child(5) button { animation: buttonIn 0.5s ease-out 0.33s both; }
 .container a:nth-child(6) button { animation: buttonIn 0.5s ease-out 0.40s both; }
+.container a:nth-child(7) button { animation: buttonIn 0.5s ease-out 0.47s both; }
 
 .container a {
   text-decoration: none !important;

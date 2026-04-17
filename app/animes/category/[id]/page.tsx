@@ -10,14 +10,44 @@ interface Anime {
   capeImage: string;
 }
 
-const CATEGORIES: Record<number, { name: string; icon: string; desc: string }> = {
-  1: { name: "Romance",   icon: "🌸", desc: "Aqui é o lugar onde o coração é mais forte que jutsu" },
-  2: { name: "Ação",      icon: "🔥", desc: "Arena do dojo, aqui é aonde os mais fortes disputam!" },
-  3: { name: "Terror",    icon: "💀", desc: "Vamos ver se sua coragem afasta a névoa sombria deste pergaminho" },
-  5: { name: "Isekai",    icon: "🌌", desc: "Fugindo da realidade no estilo ninja que o Dojo ensina" },
-  6: { name: "Sports",    icon: "🏐", desc: "Quer ser o melhor? o mais forte?, entre na quadra e que comece os jogos" },
-  7: { name: "Clássicos", icon: "📜", desc: "Lugar dos Jounins mais experientes que querem sentir nostalgia dos pergaminhos antigos" },
-};
+const CATEGORIES: Record<number, { name: string; icon: string; desc: string }> =
+  {
+    1: {
+      name: "Romance",
+      icon: "🌸",
+      desc: "Aqui é o lugar onde o coração é mais forte que jutsu",
+    },
+    2: {
+      name: "Ação",
+      icon: "🔥",
+      desc: "Arena do dojo, aqui é aonde os mais fortes disputam!",
+    },
+    3: {
+      name: "Terror",
+      icon: "💀",
+      desc: "Vamos ver se sua coragem afasta a névoa sombria deste pergaminho",
+    },
+    5: {
+      name: "Isekai",
+      icon: "🌌",
+      desc: "Fugindo da realidade no estilo ninja que o Dojo ensina",
+    },
+    6: {
+      name: "Sports",
+      icon: "🏐",
+      desc: "Quer ser o melhor? o mais forte?, entre na quadra e que comece os jogos",
+    },
+    7: {
+      name: "Clássicos",
+      icon: "📜",
+      desc: "Lugar dos Jounins mais experientes que querem sentir nostalgia dos pergaminhos antigos",
+    },
+    8: {
+      name: "Todos os Pergaminhos",
+      icon: "🥷🏼",
+      desc: "Para aqueles Genins que são ambiciosos e querem explorar todos os pergaminhos disponíveis, aqui você encontrará uma seleção completa de histórias e lutas de todos os tipos de ninjutsus.",
+    },
+  };
 
 export default async function Category({
   params,

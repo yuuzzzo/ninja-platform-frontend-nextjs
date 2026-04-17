@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./animesCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface AnimeProps {
   anime: {
@@ -17,6 +18,7 @@ interface AnimeProps {
 
 export default function AnimesCards({ anime }: AnimeProps) {
   const [isDisabled, setDisabled] = useState(false);
+  const pathname = usePathname();
 
   function notDisabled() {
     setDisabled(true);
@@ -46,7 +48,10 @@ export default function AnimesCards({ anime }: AnimeProps) {
 
       <div className={styles.containerButton}>
         <Link
-          href={`/animes/category/description/${anime.id}`}
+          href={{
+            pathname: `/animes/category/description/${anime.id}`,
+            query: { from: pathname },
+          }}
           className={styles.linkWrapper}
         >
           <button

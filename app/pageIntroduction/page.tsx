@@ -4,14 +4,15 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
 import styles from "./pageIntroduction.module.css";
+import Image from "next/image";
 
 export default function pageIntroduction() {
   const router = useRouter();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('loggedIn');
+    const isLoggedIn = localStorage.getItem("loggedIn");
     if (!isLoggedIn) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [router]);
 
@@ -19,7 +20,7 @@ export default function pageIntroduction() {
     <main className={styles.containerEntrada}>
       <div className={styles.contentCard}>
         <div className={styles.iconEntrada}>
-          <img
+          <Image
             src="/kawasaki-seeklogo.png"
             width={520}
             height={164}
@@ -40,9 +41,12 @@ export default function pageIntroduction() {
             pela internet! Tudo foi escrito de coração, com sinceridade
             implacável e, lógico, regado a umas piadinhas ninjas, rs.
             Divirta-se, meu Genin!
-<br />
-<br />
-            Se tiver alguma sugestão de obra para nosso Dojo, não se segure, chame o Ninja nesse número +55 (11) 95980-2686 e informe a sua sugestão, estou aqui sempre disponível para ajudar vocês meus pequenos Genins!
+            <br />
+            <br />
+            Se tiver alguma sugestão de obra para nosso Dojo, não se segure,
+            chame o Ninja nesse número +55 (11) 95980-2686 e informe a sua
+            sugestão, estou aqui sempre disponível para ajudar vocês meus
+            pequenos Genins!
           </p>
         </div>
         <div className={styles.buttonsRedirectEntrada}>

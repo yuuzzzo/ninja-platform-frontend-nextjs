@@ -53,12 +53,27 @@ export default function Generes() {
     },
   ];
 
+  const allPergaminhos = [
+    {
+      id: 8,
+      name: "Todos os Pergaminhos",
+      icon: "🥷🏼",
+      desc: "Para aqueles Genins que são ambiciosos e querem explorar todos os pergaminhos disponíveis, aqui você encontrará uma seleção completa de histórias e lutas de todos os tipos de ninjutsus.",
+      class: styles.classics,
+    },
+  ];
+
   return (
     <>
       <main className={styles.mainWrapper}>
         <div className={styles.titulo}>
-          <p className={styles.tituloEyebrow}>⚔️ Dojo Ninja — Curadoria Premium</p>
-          <h1>Está procurando<br />o que hoje, Genin?</h1>
+          <p className={styles.tituloEyebrow}>
+            ⚔️ Dojo Ninja — Curadoria Premium
+          </p>
+          <h1>
+            Está procurando
+            <br />o que hoje, Genin?
+          </h1>
           <p className={styles.tituloSub}>
             Escolha seu gênero e mergulhe nos melhores pergaminhos selecionados
           </p>
@@ -79,6 +94,28 @@ export default function Generes() {
                 {loadingId === genre.id
                   ? "Estilo Ninja... Anime no Jutsu! 💨"
                   : genre.name}
+              </span>
+            </button>
+          </Link>
+        ))}
+
+        {allPergaminhos.map((pergaminho) => (
+          <Link
+            key={pergaminho.id}
+            href={`/animes/category/allAnimes/${pergaminho.id}`}
+          >
+            <button
+              className={`${styles.genreButton} ${pergaminho.class}`}
+              disabled={loadingId === pergaminho.id}
+              onClick={() => setLoadingId(pergaminho.id)}
+              onMouseEnter={() => setIsHovered(pergaminho.id)}
+              onMouseLeave={() => setIsHovered(null)}
+            >
+              <span className={styles.icon}>{pergaminho.icon}</span>
+              <span>
+                {loadingId === pergaminho.id
+                  ? "Estilo Ninja... Anime no Jutsu! 💨"
+                  : pergaminho.name}
               </span>
             </button>
           </Link>
