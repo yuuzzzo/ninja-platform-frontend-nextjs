@@ -36,7 +36,10 @@ export default function AnimeListActions({ animeId }: AnimeListActionsProps) {
     async function loadStatus() {
       if (!userId) return;
       try {
-        const status = await userAnimeListService.getAnimeStatus(userId, animeId);
+        const status = await userAnimeListService.getAnimeStatus(
+          userId,
+          animeId,
+        );
         setStates({
           WANT_TO_WATCH: status.includes("WANT_TO_WATCH"),
           WATCHED: status.includes("WATCHED"),
@@ -57,7 +60,11 @@ export default function AnimeListActions({ animeId }: AnimeListActionsProps) {
     setIsLoading(listType);
     try {
       if (states[listType]) {
-        await userAnimeListService.removeAnimeFromList(userId, animeId, listType);
+        await userAnimeListService.removeAnimeFromList(
+          userId,
+          animeId,
+          listType,
+        );
       } else {
         await userAnimeListService.addAnimeToList(userId, animeId, listType);
       }
@@ -82,7 +89,7 @@ export default function AnimeListActions({ animeId }: AnimeListActionsProps) {
         </p>
       ) : (
         <p className={styles.helperText}>
-          Clique para adicionar ou remover este anime de cada categoria.
+          Clique para adicionar ou remover este anime de alguma de suas listas.
         </p>
       )}
       <div className={styles.grid}>
