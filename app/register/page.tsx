@@ -89,7 +89,18 @@ export default function Register() {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? "Registrando..." : "Registrar"}
+          {isLoading && "Verificando..."}
+          {isLoading && (
+            <>
+              <br />
+              <br />
+              <div>
+                Nos dê 1 minuto, estamos acordando nosso recepcionista, não
+                travou relaxe rs!
+              </div>
+            </>
+          )}
+          {!isLoading && "Registrar"}
         </button>
         <button
           className={styles.buttonRedirect}

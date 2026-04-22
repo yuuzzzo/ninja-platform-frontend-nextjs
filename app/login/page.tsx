@@ -34,7 +34,7 @@ export default function Login() {
           icon: "success",
           confirmButtonColor: "#3085d6",
         });
-        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem("loggedIn", "true");
       }
       router.push("/pageIntroduction");
     } catch (error) {
@@ -59,7 +59,10 @@ export default function Login() {
 
     try {
       setIsLoading(true);
-      const { resetToken: token } = await passwordService.esqueciSenha(email, username);
+      const { resetToken: token } = await passwordService.esqueciSenha(
+        email,
+        username,
+      );
       setResetToken(token);
       setEmailRecuperar(email);
       setView("recuperar-step2");
@@ -119,7 +122,12 @@ export default function Login() {
               src={"/logo.png"}
               width={120}
               height={120}
-              style={{ maxWidth: "100%", height: "auto", display: "block", margin: 0 }}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                display: "block",
+                margin: 0,
+              }}
               alt="logo recuperar senha"
             />
           </div>
@@ -142,7 +150,11 @@ export default function Login() {
             required
             disabled={isLoading}
           />
-          <button className={styles.buttonForm} type="submit" disabled={isLoading}>
+          <button
+            className={styles.buttonForm}
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? "Verificando..." : "Verificar Identidade"}
           </button>
           <button
@@ -168,12 +180,18 @@ export default function Login() {
               src={"/logo.png"}
               width={120}
               height={120}
-              style={{ maxWidth: "100%", height: "auto", display: "block", margin: 0 }}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                display: "block",
+                margin: 0,
+              }}
               alt="logo nova senha"
             />
           </div>
           <p className={styles.recoveryInfo}>
-            Token gerado para <strong>{emailRecuperar}</strong>. Crie sua nova senha abaixo.
+            Token gerado para <strong>{emailRecuperar}</strong>. Crie sua nova
+            senha abaixo.
           </p>
           <input
             className={styles.inputForm}
@@ -184,7 +202,11 @@ export default function Login() {
             required
             disabled={isLoading}
           />
-          <button className={styles.buttonForm} type="submit" disabled={isLoading}>
+          <button
+            className={styles.buttonForm}
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? "Salvando..." : "Redefinir Senha"}
           </button>
           <button
@@ -239,7 +261,18 @@ export default function Login() {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? "Verificando..." : "Logar"}
+          {isLoading && "Verificando..."}
+          {isLoading && (
+            <>
+              <br />
+              <br />
+              <div>
+                Nos dê 1 minuto, estamos acordando nosso recepcionista, não
+                travou relaxe rs!
+              </div>
+            </>
+          )}
+          {!isLoading && "Logar"}
         </button>
         <button
           type="button"
