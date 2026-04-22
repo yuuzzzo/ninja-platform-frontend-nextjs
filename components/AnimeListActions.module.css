@@ -1,0 +1,64 @@
+.wrapper {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  color: #f0dc80;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.helperText {
+  margin: 0 0 1rem;
+  color: #9b9b9b;
+  font-size: 0.82rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.actionButton {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  color: #cfcfcf;
+  border-radius: 8px;
+  padding: 0.65rem 0.5rem;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.actionButton:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  color: #f0dc80;
+  background: rgba(201, 168, 76, 0.07);
+}
+
+.active {
+  border-color: rgba(201, 168, 76, 0.75);
+  background: rgba(201, 168, 76, 0.2);
+  color: #fdf2bf;
+}
+
+.actionButton:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

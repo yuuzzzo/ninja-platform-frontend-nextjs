@@ -1,0 +1,22 @@
+.myListButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 10px;
+  background: rgba(201, 168, 76, 0.08);
+  color: #f0dc80;
+  font-size: 0.75rem;
+  letter-spacing: 0.8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.myListButton:hover {
+  border-color: rgba(201, 168, 76, 0.6);
+  background: rgba(201, 168, 76, 0.14);
+  transform: translateY(-2px);
+}

@@ -1,4 +1,5 @@
 import BackButton from "@/components/BackButton";
+import MyListButton from "@/components/MyListButton";
 import styles from "../../[id]/CategoryCards.module.css";
 import CategorySearch from "../../[id]/CategorySearch";
 
@@ -35,6 +36,7 @@ export default async function AllAnimes({
     <main className={styles.mainWrapper}>
       <div className={styles.topBar}>
         <BackButton href="/generes" label="Categorias" />
+        <MyListButton />
       </div>
 
       <header className={styles.categoryHeader}>

@@ -1,7 +1,8 @@
 import Anime from "@/interfaces/Anime";
 import UsersRegister from "@/interfaces/UsersRegister";
-import UsersLogin from "@/interfaces/UsersLogin";
+import UsersLogin, { UserLoginResponse } from "@/interfaces/UsersLogin";
 import InsertAnimes from "@/interfaces/InsertAnimes";
+import { AnimeListType, UserAnimeListItem } from "@/interfaces/UserAnimeList";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.ninjaanimes.com.br/api";
 
@@ -92,7 +93,7 @@ export const usersService = {
     return await resposta.json();
   },
 
-  async postUserLogin(userData: Partial<UsersLogin>): Promise<UsersLogin> {
+  async postUserLogin(userData: Partial<UsersLogin>): Promise<UserLoginResponse> {
     const resposta = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -103,5 +104,67 @@ export const usersService = {
       throw new Error("Não foi possivel conectar ao banco de dados!");
 
     return await resposta.json();
+  },
+};
+
+export const userAnimeListService = {
+  async getAnimeStatus(userId: number, animeId: number): Promise<AnimeListType[]> {
+    const resposta = await fetch(`${BASE_URL}/users/${userId}/anime-lists/${animeId}`);
+
+    if (!resposta.ok) {
+      return [];
+    }
+
+    const dados = await resposta.json();
+    return dados.data || [];
+  },
+
+  async addAnimeToList(
+    userId: number,
+    animeId: number,
+    listType: AnimeListType,
+  ): Promise<UserAnimeListItem> {
+    const resposta = await fetch(`${BASE_URL}/users/${userId}/anime-lists/${animeId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ listType }),
+    });
+
+    if (!resposta.ok) {
+      const errorBody = await resposta.text();
+      throw new Error(
+        `Não foi possível adicionar anime na lista. Status ${resposta.status}. ${errorBody}`,
+      );
+    }
+
+    const dados = await resposta.json();
+    return dados.data;
+  },
+
+  async removeAnimeFromList(userId: number, animeId: number, listType: AnimeListType) {
+    const resposta = await fetch(
+      `${BASE_URL}/users/${userId}/anime-lists/${animeId}/${listType}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    if (!resposta.ok) {
+      const errorBody = await resposta.text();
+      throw new Error(
+        `Não foi possível remover anime da lista. Status ${resposta.status}. ${errorBody}`,
+      );
+    }
+  },
+
+  async getUserAnimeList(userId: number): Promise<UserAnimeListItem[]> {
+    const resposta = await fetch(`${BASE_URL}/users/${userId}/anime-lists`);
+
+    if (!resposta.ok) {
+      throw new Error("Não foi possível carregar sua lista.");
+    }
+
+    const dados = await resposta.json();
+    return dados.data || [];
   },
 };

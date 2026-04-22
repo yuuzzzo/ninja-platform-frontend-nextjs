@@ -1,4 +1,5 @@
 import BackButton from "@/components/BackButton";
+import MyListButton from "@/components/MyListButton";
 import CategorySearch from "./CategorySearch";
 import styles from "./CategoryCards.module.css";
 
@@ -72,6 +73,7 @@ export default async function Category({
       {/* ── Barra de navegação ── */}
       <div className={styles.topBar}>
         <BackButton href="/generes" label="Categorias" />
+        <MyListButton />
       </div>
 
       {/* ── Header da categoria ── */}

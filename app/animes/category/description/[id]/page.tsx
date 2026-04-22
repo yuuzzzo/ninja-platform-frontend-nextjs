@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "./AnimeDetails.module.css";
 import BackButton from "@/components/BackButton";
+import AnimeListActions from "@/components/AnimeListActions";
+import MyListButton from "@/components/MyListButton";
 
 const PLATFORM_CLASS: Record<string, string> = {
   Netflix: styles.platformNetflix,
@@ -33,10 +35,10 @@ export default async function AnimeDetails({
   return (
     <main className={styles.container}>
       <div className={styles.content}>
-        <BackButton
-          href={backHref}
-          label="Voltar à lista"
-        />
+        <div className={styles.topNav}>
+          <BackButton href={backHref} label="Voltar à lista" />
+          <MyListButton />
+        </div>
 
         <header className={styles.header}>
           <div className={styles.imageContainer}>
@@ -66,11 +68,22 @@ export default async function AnimeDetails({
               ))}
             </div>
             <h1 className={styles.title}>{anime.title}</h1>
-            <span className={styles.releaseDate}>Ano de lançamento: {anime.DataLancamento}</span>
+            <span className={styles.releaseDate}>
+              Ano de lançamento: {anime.DataLancamento}
+            </span>
+            <div className={styles.geninVotes}>
+              <div className={styles.voteApproved}>
+                ✅ Genins gostaram: {anime.approvedGeninCount ?? 0}
+              </div>
+              <div className={styles.voteRejected}>
+                ❌ Genins não gostaram: {anime.rejectedGeninCount ?? 0}
+              </div>
+            </div>
             <div>
               <h3 className={styles.sectionTitle}>Sinopse</h3>
               <p className={styles.synopsis}>{anime.synopisis}</p>
             </div>
+            <AnimeListActions animeId={Number(id)} />
           </div>
         </header>
 
@@ -98,7 +111,7 @@ export default async function AnimeDetails({
               <span className={styles.statValue}>{anime.DurationEp} min</span>
             </div>
           </div>
- 
+
           <div className={styles.chipsSection}>
             <span className={styles.chipsLabel}>Plataformas</span>
             <div className={styles.chipsRow}>
@@ -124,7 +137,9 @@ export default async function AnimeDetails({
             </div>
           </div>
 
-        <div className={`${styles.statCard} ${styles.statusCard} ${anime.StatusFinished ? styles.finished : styles.ongoing}`}>
+          <div
+            className={`${styles.statCard} ${styles.statusCard} ${anime.StatusFinished ? styles.finished : styles.ongoing}`}
+          >
             <span className={styles.statIcon}>
               {anime.StatusFinished ? "✅" : "🔥"}
             </span>
@@ -138,7 +153,6 @@ export default async function AnimeDetails({
             </div>
           </div>
         </section>
-      
 
         <section className={styles.ninjaSection}>
           <h2 className={styles.ninjaTitle}>

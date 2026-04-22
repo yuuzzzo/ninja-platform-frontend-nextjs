@@ -31,6 +31,13 @@
   width: 100%;
 }
 
+.topNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 /* ── Header hero ────────────────────────────────────────────────────── */
 .header {
   display: flex;
@@ -195,6 +202,34 @@
   letter-spacing: -1px;
   line-height: 1.08;
   text-shadow: 0 2px 40px rgba(255, 255, 255, 0.06);
+}
+
+.geninVotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.voteApproved,
+.voteRejected {
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.voteApproved {
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.1);
+  color: #7ee8a5;
+}
+
+.voteRejected {
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ff9e9e;
 }
 
 /* ── Sinopse ────────────────────────────────────────────────────────── */

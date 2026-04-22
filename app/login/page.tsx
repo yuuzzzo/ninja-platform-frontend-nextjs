@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Swal from "sweetalert2";
+import { saveSession } from "@/services/session.service";
 
 type View = "login" | "recuperar-step1" | "recuperar-step2";
 
@@ -34,7 +35,7 @@ export default function Login() {
           icon: "success",
           confirmButtonColor: "#3085d6",
         });
-        localStorage.setItem("loggedIn", "true");
+        saveSession(response.data);
       }
       router.push("/pageIntroduction");
     } catch (error) {
