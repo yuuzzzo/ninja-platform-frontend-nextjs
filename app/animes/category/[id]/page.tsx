@@ -70,13 +70,11 @@ export default async function Category({
 
   return (
     <main className={styles.mainWrapper}>
-      {/* ── Barra de navegação ── */}
       <div className={styles.topBar}>
         <BackButton href="/generes" label="Categorias" />
         <MyListButton />
       </div>
 
-      {/* ── Header da categoria ── */}
       <header className={styles.categoryHeader}>
         <div className={styles.categoryGlow} />
         <span className={styles.categoryIcon}>{category.icon}</span>

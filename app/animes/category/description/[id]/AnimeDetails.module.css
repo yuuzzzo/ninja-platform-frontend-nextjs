@@ -211,7 +211,8 @@
 }
 
 .voteApproved,
-.voteRejected {
+.voteRejected,
+.votePending {
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 0.72rem;
@@ -230,6 +231,12 @@
   border: 1px solid rgba(239, 68, 68, 0.4);
   background: rgba(239, 68, 68, 0.1);
   color: #ff9e9e;
+}
+
+.votePending {
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: #f0dc80;
+  background: rgba(201, 168, 76, 0.08);
 }
 
 /* ── Sinopse ────────────────────────────────────────────────────────── */

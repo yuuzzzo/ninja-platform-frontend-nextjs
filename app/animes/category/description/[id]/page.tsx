@@ -78,6 +78,23 @@ export default async function AnimeDetails({
               <div className={styles.voteRejected}>
                 ❌ Genins não gostaram: {anime.rejectedGeninCount ?? 0}
               </div>
+              <div className={styles.geninVotes}>
+                {anime.approvedGeninCount >= 10 &&
+                anime.rejectedGeninCount < 10 ? (
+                  <div className={styles.voteApproved}>
+                    A maioria dos Genins gostaram deste pergaminho 🌟
+                  </div>
+                ) : anime.approvedGeninCount < 10 &&
+                  anime.rejectedGeninCount >= 11 ? (
+                  <div className={styles.voteRejected}>
+                    A maioria dos Genins não gostaram deste pergaminho 🚨
+                  </div>
+                ) : (
+                  <div className={styles.votePending}>
+                    Notas insuficientes para a média desse pergaminho ☁️
+                  </div>
+                )}
+              </div>
             </div>
             <div>
               <h3 className={styles.sectionTitle}>Sinopse</h3>
