@@ -4,7 +4,8 @@ import UsersLogin, { UserLoginResponse } from "@/interfaces/UsersLogin";
 import InsertAnimes from "@/interfaces/InsertAnimes";
 import { AnimeListType, UserAnimeListItem } from "@/interfaces/UserAnimeList";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.ninjaanimes.com.br/api";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "https://api.ninjaanimes.com.br/api";
 
 export const animeService = {
   async getAllAnimes(): Promise<Anime[]> {
@@ -49,14 +50,18 @@ export const animeService = {
 };
 
 export const passwordService = {
-  async esqueciSenha(email: string, user: string): Promise<{ resetToken: string }> {
+  async esqueciSenha(
+    email: string,
+    user: string,
+  ): Promise<{ resetToken: string }> {
     const resposta = await fetch(`${BASE_URL}/esqueci-senha`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, user }),
     });
 
-    if (!resposta.ok) throw new Error("Credenciais não encontradas na base Ninja.");
+    if (!resposta.ok)
+      throw new Error("Credenciais não encontradas na base Ninja.");
 
     return await resposta.json();
   },
@@ -93,7 +98,9 @@ export const usersService = {
     return await resposta.json();
   },
 
-  async postUserLogin(userData: Partial<UsersLogin>): Promise<UserLoginResponse> {
+  async postUserLogin(
+    userData: Partial<UsersLogin>,
+  ): Promise<UserLoginResponse> {
     const resposta = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -108,8 +115,13 @@ export const usersService = {
 };
 
 export const userAnimeListService = {
-  async getAnimeStatus(userId: number, animeId: number): Promise<AnimeListType[]> {
-    const resposta = await fetch(`${BASE_URL}/users/${userId}/anime-lists/${animeId}`);
+  async getAnimeStatus(
+    userId: number,
+    animeId: number,
+  ): Promise<AnimeListType[]> {
+    const resposta = await fetch(
+      `${BASE_URL}/users/${userId}/anime-lists/${animeId}`,
+    );
 
     if (!resposta.ok) {
       return [];
@@ -124,11 +136,14 @@ export const userAnimeListService = {
     animeId: number,
     listType: AnimeListType,
   ): Promise<UserAnimeListItem> {
-    const resposta = await fetch(`${BASE_URL}/users/${userId}/anime-lists/${animeId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ listType }),
-    });
+    const resposta = await fetch(
+      `${BASE_URL}/users/${userId}/anime-lists/${animeId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ listType }),
+      },
+    );
 
     if (!resposta.ok) {
       const errorBody = await resposta.text();
@@ -141,7 +156,11 @@ export const userAnimeListService = {
     return dados.data;
   },
 
-  async removeAnimeFromList(userId: number, animeId: number, listType: AnimeListType) {
+  async removeAnimeFromList(
+    userId: number,
+    animeId: number,
+    listType: AnimeListType,
+  ) {
     const resposta = await fetch(
       `${BASE_URL}/users/${userId}/anime-lists/${animeId}/${listType}`,
       {

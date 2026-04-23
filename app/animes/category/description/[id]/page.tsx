@@ -158,7 +158,12 @@ export default async function AnimeDetails({
           <h2 className={styles.ninjaTitle}>
             <span>🏮</span> Opinião do Ninja
           </h2>
-          <p className={styles.opinionText}>{anime.opinionNinja}</p>
+          <p className={styles.opinionText}>
+            <br />
+            {anime.opinionNinja
+              ? anime.opinionNinja
+              : "O Ninja ainda está avaliando este pergaminho... 🥷 🔍"}
+          </p>
         </section>
       </div>
     </main>
